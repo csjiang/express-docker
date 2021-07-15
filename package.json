@@ -1,0 +1,41 @@
+{
+  "name": "express-docker",
+  "version": "0.0.1",
+  "description": "Dockerized Express application",
+  "scripts": {
+    "test": "npx mocha test",
+    "test-watch": "npx mocha test --watch",
+    "start": "PORT=3000 && nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csjiang/express-docker.git"
+  },
+  "keywords": [
+    "express",
+    "docker",
+    "server"
+  ],
+  "author": "CS Jiang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/csjiang/express-docker/issues"
+  },
+  "homepage": "https://github.com/csjiang/express-docker#readme",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.0.2",
+    "sinon": "^11.1.1",
+    "supertest-as-promised": "^4.0.2"
+  },
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.12"
+  }
+}
