@@ -1,7 +1,7 @@
 IMAGE_NAME := csjiang/express-docker
 IMAGE_VERSION := $(shell jq '.version' package.json)
 
-.PHONY: help docker interactive clean
+.PHONY: help docker interactive clean deploy-namespace deploy-dev
 
 help:
 	@echo 'Run "make docker" to build docker images.'
@@ -19,4 +19,12 @@ clean:
 # start an interactive session to verify a docker image build
 interactive:
 	set -ex;
-	docker run -it --rm --privileged -v $(PWD):/mnt $(IMAGE_NAME):$(IMAGE_VERSION) /bin/bash
+	docker run -it --rm --privileged -v $(PWD):/mnt $(IMAGE_NAME):$(IMAGE_VERSION) /bin/bash# start an interactive session to verify a docker image build
+
+deploy-namespace:
+	set -ex;
+	cd deploy && kubectl apply -f namespace.yml
+
+deploy-dev:
+	set -ex;
+	cd deploy && kubectl apply -f deployment.yml,service.yml

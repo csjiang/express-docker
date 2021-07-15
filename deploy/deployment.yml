@@ -23,19 +23,20 @@ spec:
               name: http
           env:
             - name: NODE_ENV
-              value: development
+              value: "development"
             - name: PORT
-              value: 3001
+              value: "3001"
           livenessProbe:
             httpGet:
               path: /healthcheck
               port: "http"
-              initialDelaySeconds: 5
-              timeoutSeconds: 1
-              failureThreshold: 3
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            failureThreshold: 3
           readinessProbe:
+            httpGet:
               path: /api/v1/heartbeat
               port: "http"
-              initialDelaySeconds: 5
-              timeoutSeconds: 1
-              failureThreshold: 3
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            failureThreshold: 3
