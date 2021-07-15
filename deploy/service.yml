@@ -1,0 +1,18 @@
+piVersion: v1
+kind: Service
+metadata:
+  name: express-docker
+  namespace: express-docker
+  labels:
+    name: express-docker
+    env: dev
+spec:
+  selector:
+    app: express-docker
+    env: dev
+  type: NodePort
+  ports:
+    - name: http
+      protocol: TCP
+      nodePort: 3001
+      port: 3001

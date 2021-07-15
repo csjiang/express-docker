@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-docker
+  namespace: express-docker
+  labels:
+    app: express-docker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: express-docker
+  template:
+    metadata:
+      labels:
+        app: express-docker
+    spec:
+      containers:
+        - name: express-docker
+          image: csjiang/express-docker:latest
+          ports:
+            - containerPort: 3001
+              name: http
+          env:
+            - name: NODE_ENV
+              value: development
+            - name: PORT
+              value: 3001
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: "http"
+              initialDelaySeconds: 5
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readinessProbe:
+              path: /api/v1/heartbeat
+              port: "http"
+              initialDelaySeconds: 5
+              timeoutSeconds: 1
+              failureThreshold: 3
